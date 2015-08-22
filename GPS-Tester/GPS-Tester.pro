@@ -14,5 +14,8 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
+INCLUDEPATH += ../Include/gtest/
 
-SOURCES += main.cpp
+
+SOURCES += main.cpp \
+../Include/gtest/src/gtest-all.cc \
