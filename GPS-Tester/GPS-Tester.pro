@@ -15,7 +15,18 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 INCLUDEPATH += ../Include/gtest/
+INCLUDEPATH += ../GPS/
 
 
-SOURCES += main.cpp \
+
+SOURCES += \
 ../Include/gtest/src/gtest-all.cc \
+    testing.cpp \
+    testmain.cpp \
+    ../GPS/gps.cpp \
+
+
+HEADERS += \
+    ../GPS/gps.h \
+
+
