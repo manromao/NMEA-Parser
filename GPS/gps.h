@@ -37,11 +37,11 @@ private:
     bool isValidRMC(const string RMCSentence);
     void setValuesRMC(const string RMCSentence);
 
-
     // Auxualiary functions
     vector<string> splitStringByComma(const string);
     double stringToDouble(const string);
     double getCoordinates(string);
+
 };
 
 double degreesToDecimal(const int Degrees,const double Minutes,const int seconds = 0);

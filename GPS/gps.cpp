@@ -5,6 +5,7 @@
 
 
 
+
 GPS::GPS()
 {
     UTC                 = 0;
@@ -17,6 +18,7 @@ GPS::GPS()
     date                = 0;
 }
 
+// Constructor using GGA and RMC sentences only. Assigns all data.
 GPS::GPS(string GGASentence,string RMCSentence){
     if (isValidGGA(GGASentence)) setValuesGGA(GGASentence);
     if (isValidRMC(RMCSentence)) setValuesRMC(RMCSentence);
@@ -25,6 +27,7 @@ GPS::GPS(string GGASentence,string RMCSentence){
 
 // Set values from GGA sentence
 
+// Checks if GGA sentence is valid.
 bool GPS::isValidGGA(const string GGASentence){
     bool returnBool = true;
     vector<std::string> elementVector = splitStringByComma(GGASentence);
@@ -59,6 +62,7 @@ void GPS::setValuesGGA(string GGA){
 
 // RMC sentence
 
+// Check if RMC sentence is valid with NMEA standard.
 bool GPS::isValidRMC(const string RMCSentence){    
     bool returnBool = true;
     vector<std::string> elementVector = splitStringByComma(RMCSentence);
@@ -79,14 +83,14 @@ void GPS::setValuesRMC(const string RMCSentence){
     // Assert we have an RMC  sentence
     assert(elementVector[0] == "$GPRMC");
 
-    this->UTC                 = atoi(elementVector[1].c_str());
-    this->latitude            = getCoordinates(elementVector[3]);
+    this->UTC               = atoi(elementVector[1].c_str());
+    this->latitude          = getCoordinates(elementVector[3]);
     if (elementVector[3] == "S") this->latitude  = -this->latitude;
-    this->longitude           = getCoordinates(elementVector[5]);
+    this->longitude         = getCoordinates(elementVector[5]);
     if (elementVector[5] == "W") this->longitude  = -this->longitude;
-    this->speed = stringToDouble(elementVector[7])* KNOTS_TO_MPS;
-    this->heading = stringToDouble(elementVector[8]);
-    this->date = atoi(elementVector[9].c_str());
+    this->speed             = stringToDouble(elementVector[7])* KNOTS_TO_MPS;
+    this->heading           = stringToDouble(elementVector[8]);
+    this->date              = atoi(elementVector[9].c_str());
 
 
 }
